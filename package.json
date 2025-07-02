@@ -1,0 +1,33 @@
+{
+  "name": "guess-the-animal",
+  "version": "1.0.0",
+  "description": "A simple quiz like game",
+  "main": "index.tsx",
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "start": "vite",
+    "test": "vitest run --mode test"
+  },
+  "author": "Pranshu Teotia",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^24.0.10",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react": "^4.6.0",
+    "dotenv": "^17.0.1",
+    "jsdom": "^26.1.0",
+    "typescript": "^5.8.3",
+    "vite": "^7.0.0",
+    "vite-plugin-mkcert": "^1.17.8",
+    "vitest": "^3.2.4"
+  },
+  "dependencies": {
+    "@cloudscape-design/components": "^3.0.1013",
+    "@cloudscape-design/global-styles": "^1.0.44",
+    "react": "^19.1.0",
+    "react-confetti-explosion": "^3.0.3",
+    "react-dom": "^19.1.0"
+  }
+}
