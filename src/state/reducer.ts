@@ -9,8 +9,8 @@ export const reducer = (
       return { ...state, animal: action.payload };
     case "SET_GUESS":
       return { ...state, currentGuess: action.payload };
-    case "SET_STATUS":
-      return { ...state, status: action.payload };
+    case "SET_MODE":
+      return { ...state, mode: action.payload };
     default:
       return state;
   }

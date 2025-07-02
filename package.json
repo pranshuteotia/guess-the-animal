@@ -4,6 +4,14 @@
   "description": "A simple quiz like game",
   "main": "index.tsx",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:pranshuteotia/guess-the-animal.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pranshuteotia/guess-the-animal/issues"
+  },
+  "homepage": "https://github.com/pranshuteotia/guess-the-animal#readme",
   "scripts": {
     "build": "vite build",
     "start": "vite",

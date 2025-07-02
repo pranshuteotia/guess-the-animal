@@ -6,6 +6,7 @@ import type { GlobalContextType } from "src/types.js";
 const initialState: GlobalState = {
   animal: "",
   currentGuess: "",
+  mode: "NORMAL",
 };
 
 const GlobalContext = createContext<GlobalContextType | undefined>(undefined);
