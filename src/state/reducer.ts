@@ -11,6 +11,10 @@ export const reducer = (
       return { ...state, currentGuess: action.payload };
     case "SET_MODE":
       return { ...state, mode: action.payload };
+    case "SET_WON":
+      return { ...state, won: action.payload };
+    case "SET_STATUS":
+      return { ...state, status: action.payload };
     default:
       return state;
   }

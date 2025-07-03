@@ -34,7 +34,7 @@ export const GuessArea = () => {
   const onChangeHandler = (
     event: NonCancelableCustomEvent<BaseChangeDetail>
   ) => {
-    const updatedSearchTerm = event.detail.value;
+    const updatedSearchTerm = event.detail.value.toLocaleLowerCase();
     loadOptions(updatedSearchTerm);
     dispatch({ type: "SET_GUESS", payload: updatedSearchTerm });
   };

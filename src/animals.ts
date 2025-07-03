@@ -1,7 +1,7 @@
 export const animals: Record<string, string[]> = {
   bear: ["bhalu"],
   buffalo: ["bhains"],
-  camel: ["oonṭh"],
+  camel: ["oonth"],
   cat: ["billi"],
   chameleon: ["girgit"],
   cow: ["gaai"],

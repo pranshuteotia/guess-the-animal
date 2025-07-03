@@ -7,6 +7,8 @@ const initialState: GlobalState = {
   animal: "",
   currentGuess: "",
   mode: "NORMAL",
+  won: false,
+  status: "PLAY",
 };
 
 const GlobalContext = createContext<GlobalContextType | undefined>(undefined);
