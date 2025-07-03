@@ -11,12 +11,9 @@ export const useImage = (fileName: string) => {
     const fetchImage = async () => {
       setLoading(true);
       try {
-        const response = import.meta.glob(`./images/*.webp`, {
-          eager: true,
-        });
-        const imageUrl = (response[fileName] as any)?.default;
-        response;
-        setImage(imageUrl);
+        /* @vite-ignore */
+        const response = await import(`./images/${fileName}`);
+        setImage(response.default);
       } catch (err: any) {
         setError(err);
       } finally {
