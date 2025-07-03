@@ -16,6 +16,7 @@
     "build": "vite build",
     "deploy": "gh-pages -d dist",
     "predeploy": "npm run build",
+    "preview": "vite preview",
     "start": "vite",
     "test": "vitest run --mode test"
   },

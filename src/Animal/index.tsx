@@ -11,7 +11,7 @@ export const Animal = () => {
     <SpaceBetween size="s" direction="vertical">
       <Header variant="h2">{capitalize(animal)}</Header>
       <img
-        src={`/images/${animal}.webp`}
+        src={`./images/${animal}.webp`}
         alt={`Cartoonish ${animal}`}
         width={300}
         style={{ borderRadius: 8 }}
