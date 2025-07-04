@@ -5,6 +5,7 @@ import {
   Spinner,
 } from "@cloudscape-design/components";
 import { useEffect, useState } from "react";
+import { useAnimalStyles } from "src/Animal/styles.js";
 import { animals } from "src/animals.js";
 import { useImage } from "src/hooks/use-image.js";
 import { useGlobalContext } from "src/state/index.js";
@@ -14,54 +15,38 @@ export const Animal = () => {
   const {
     state: { animal, status },
   } = useGlobalContext();
-
+  const { imageWrapper, imagePlaceholder } = useAnimalStyles();
   const { loading } = useImage(`${animal}.webp`);
 
   useEffect(() => {
     console.log(loading);
   }, [loading]);
 
-  if (animal.length === 0) {
+  if (animal.length === 0 || !animals[animal]) {
     return null;
   }
 
+  const answer = animals[animal].map((text) => capitalize(text)).join(", ");
+
   return (
     <SpaceBetween size="s" direction="vertical">
-      <div
-        style={{
-          width: 300,
-          height: 300,
-          background: "#d8d7d4",
-          borderRadius: 8,
-          position: "relative",
-        }}
-      >
+      <div className={imageWrapper}>
         {!loading && (
           <img
             src={`./images/${animal}.webp`}
             alt={`Cartoonish ${animal}`}
             width={300}
-            style={{ borderRadius: 8 }}
           />
         )}
         {loading && (
-          <div
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              translate: "-50% -50%",
-            }}
-          >
+          <div className={imagePlaceholder}>
             <Spinner size="big" />
           </div>
         )}
       </div>
       <SpaceBetween direction="horizontal" size="xs" alignItems="end">
         <Header variant="h2">{capitalize(animal)}</Header>
-        {status === "REVEAL" && (
-          <Box>{`(${capitalize(animals[animal].join(","))})`}</Box>
-        )}
+        {status === "REVEAL" && <Box>{`(${answer})`}</Box>}
       </SpaceBetween>
     </SpaceBetween>
   );

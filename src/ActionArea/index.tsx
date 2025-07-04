@@ -1,6 +1,7 @@
 import { Button, SpaceBetween } from "@cloudscape-design/components";
 import { useEffect, useState } from "react";
 import { ConfettiExplosion } from "react-confetti-explosion";
+import { useActionAreaStyles } from "src/ActionArea/styles.js";
 import { animals } from "src/animals.js";
 import { useGlobalContext } from "src/state/index.js";
 import { getRandomAnimal } from "src/utils/index.js";
@@ -12,6 +13,7 @@ export const ActionArea = () => {
   } = useGlobalContext();
 
   const [celebrate, setCelebrate] = useState(false);
+  const { confettiContainer } = useActionAreaStyles();
 
   useEffect(() => {
     setCelebrate(status === "CELEBRATE");
@@ -68,13 +70,7 @@ export const ActionArea = () => {
         </Button>
       </SpaceBetween>
       {celebrate && (
-        <div
-          style={{
-            position: "absolute",
-            top: "25%",
-            left: "50%",
-          }}
-        >
+        <div className={confettiContainer}>
           <ConfettiExplosion
             particleCount={250}
             force={0.6}
