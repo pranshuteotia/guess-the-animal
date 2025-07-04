@@ -1,10 +1,10 @@
 import { Mode } from "@cloudscape-design/global-styles";
-import { useCurrentTheme } from "src/hooks/use-current-theme.js";
+import { useSelector } from "src/state/index.js";
 
 interface MoonIconProps {}
 
 export const Moon = (props: MoonIconProps) => {
-  const theme = useCurrentTheme();
+  const theme = useSelector((state) => state.theme);
 
   return (
     <svg

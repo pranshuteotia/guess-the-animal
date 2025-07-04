@@ -41,6 +41,7 @@ export const App = () => {
   useEffect(() => {
     const theme = getThemeFromLocalStorage();
     applyMode(theme);
+    dispatch({ type: "SET_THEME", payload: theme });
 
     const searchParams = new URLSearchParams(window.location.search);
     const value = searchParams.get("animal");
@@ -55,6 +56,7 @@ export const App = () => {
     const theme = isDarkModeEnabled() ? Mode.Light : Mode.Dark;
     setLocalStorage("theme", theme);
     applyMode(theme);
+    dispatch({ type: "SET_THEME", payload: theme });
   };
 
   return (

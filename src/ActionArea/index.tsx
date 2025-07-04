@@ -50,7 +50,7 @@ export const ActionArea = () => {
       <SpaceBetween size="m" direction="vertical">
         <SpaceBetween size="s" direction="horizontal">
           <Button disabled={celebrate} onClick={nextButtonHandler}>
-            Next
+            Skip
           </Button>
           <Button
             disabled={celebrate || status === "REVEAL"}

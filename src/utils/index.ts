@@ -37,7 +37,7 @@ export const setLocalStorage = (key: LocalStorageKey, value: any) => {
 
     localStorage.setItem(key, serializedValue);
   } catch (e) {
-    // Do nothin.
+    // Do nothing.
   }
 };
 
@@ -50,7 +50,7 @@ export const getLocalStorage = (key: LocalStorageKey) => {
     }
     return JSON.parse(serializedValue);
   } catch (e) {
-    // Do nothin.
+    // Do nothing.
   }
 };
 

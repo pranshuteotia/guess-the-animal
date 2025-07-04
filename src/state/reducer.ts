@@ -15,6 +15,8 @@ export const reducer = (
       return { ...state, won: action.payload };
     case "SET_STATUS":
       return { ...state, status: action.payload };
+    case "SET_THEME":
+      return { ...state, theme: action.payload };
     default:
       return state;
   }
