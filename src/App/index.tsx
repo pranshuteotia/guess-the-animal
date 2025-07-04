@@ -19,13 +19,13 @@ import {
   setLocalStorage,
 } from "src/utils/index.js";
 import { useGlobalContext } from "src/state/index.js";
-import { Moon } from "src/Icons/index.js";
+import { Moon, Sun } from "src/Icons/index.js";
 import { applyMode, Mode } from "@cloudscape-design/global-styles";
 
 export const App = () => {
   const {
     dispatch,
-    state: { won },
+    state: { won, theme },
   } = useGlobalContext();
   const headerRef = useRef<HTMLDivElement>(null);
 
@@ -69,7 +69,7 @@ export const App = () => {
             actions={
               <Button
                 variant="icon"
-                iconSvg={<Moon />}
+                iconSvg={theme === Mode.Light ? <Moon /> : <Sun />}
                 onClick={toggleModeHandler}
               />
             }
