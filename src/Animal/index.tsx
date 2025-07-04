@@ -14,7 +14,8 @@ export const Animal = () => {
   const {
     state: { animal, status },
   } = useGlobalContext();
-  const { imageWrapper, imagePlaceholder } = useAnimalStyles();
+  const { imageWrapper, imageBorderRadius, imagePlaceholder } =
+    useAnimalStyles();
   const { loading } = useImage(`${animal}.webp`);
 
   if (animal.length === 0 || !animals[animal]) {
@@ -31,6 +32,7 @@ export const Animal = () => {
             src={`./images/${animal}.webp`}
             alt={`Cartoonish ${animal}`}
             width={300}
+            className={imageBorderRadius}
           />
         )}
         {loading && (

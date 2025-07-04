@@ -18,4 +18,7 @@ export const useAnimalStyles = createUseStyles({
     left: "50%",
     translate: "-50% -50%",
   },
+  imageBorderRadius: {
+    borderRadius: borderRadiusTiles,
+  },
 });
