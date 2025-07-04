@@ -1,16 +1,18 @@
 import { animals } from "src/animals.js";
 import { DARK_MODE_CLASS_NAME } from "src/constants.js";
 import fuzzy from "fuzzy";
-import type { LocalStorageKey } from "src/types.js";
+import type { LocalStorageKey, Nullable } from "src/types.js";
 import { Mode } from "@cloudscape-design/global-styles";
 
 const animalsInEnglish = Object.keys(animals);
-export const possibleGuesses = Object.values(animals).reduce((acc, val) => {
+export const possibleGuesses: string[] = Object.values(animals).reduce<
+  string[]
+>((acc, [val]) => {
   acc = acc.concat(val);
   return acc;
 }, []);
 
-export const getRandomAnimal = () => {
+export const getRandomAnimal = (): string => {
   const randomIndex = Math.floor(Math.random() * animalsInEnglish.length);
   return animalsInEnglish[randomIndex];
 };
@@ -20,10 +22,12 @@ export const capitalize = (str: string): string => {
   return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
-export const isDarkModeEnabled = () =>
+export const isDarkModeEnabled = (): boolean =>
   document.body.classList.contains(DARK_MODE_CLASS_NAME);
 
-export const getAnimalFromString = (searchTerm?: string | null) => {
+export const getAnimalFromString = (
+  searchTerm?: Nullable<string>
+): Nullable<string> => {
   if (!searchTerm) {
     return null;
   }

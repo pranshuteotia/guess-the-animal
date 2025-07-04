@@ -22,7 +22,9 @@ export const Animal = () => {
     return null;
   }
 
-  const answer = animals[animal].map((text) => capitalize(text)).join(", ");
+  const [answers] = animals[animal];
+
+  const answer = answers.map((text) => capitalize(text)).join(", ");
 
   return (
     <SpaceBetween size="s" direction="vertical">

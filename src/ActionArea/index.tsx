@@ -20,7 +20,8 @@ export const ActionArea = () => {
   }, [status]);
 
   const submitButtonHandler = () => {
-    if (animals[animal].includes(currentGuess)) {
+    const [answers, secret] = animals[animal];
+    if (answers.concat(secret).includes(currentGuess)) {
       dispatch({ type: "SET_WON", payload: true });
       dispatch({ type: "SET_GUESS", payload: "" });
     } else {

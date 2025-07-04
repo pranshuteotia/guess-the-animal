@@ -27,3 +27,5 @@ export interface GlobalContextType {
 }
 
 export type LocalStorageKey = "theme";
+
+export type Nullable<T> = T | null;
