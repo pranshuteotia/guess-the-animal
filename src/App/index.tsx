@@ -31,7 +31,12 @@ export const App = () => {
   }, [won]);
 
   useEffect(() => {
-    dispatch({ type: "SET_ANIMAL", payload: getRandomAnimal() });
+    const searchParams = new URLSearchParams(window.location.search);
+    const animal = (
+      searchParams.get("animal") || getRandomAnimal()
+    ).toLocaleLowerCase();
+
+    dispatch({ type: "SET_ANIMAL", payload: animal });
   }, []);
 
   return (
