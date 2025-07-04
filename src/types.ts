@@ -20,3 +20,5 @@ export interface GlobalContextType {
   state: GlobalState;
   dispatch: React.Dispatch<GlobalStateActions>;
 }
+
+export type LocalStorageKey = "theme";

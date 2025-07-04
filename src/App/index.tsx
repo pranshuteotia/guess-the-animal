@@ -14,7 +14,9 @@ import { useEffect, useRef } from "react";
 import {
   getAnimalFromString,
   getRandomAnimal,
+  getThemeFromLocalStorage,
   isDarkModeEnabled,
+  setLocalStorage,
 } from "src/utils/index.js";
 import { useGlobalContext } from "src/state/index.js";
 import { Moon } from "src/Icons/index.js";
@@ -37,6 +39,9 @@ export const App = () => {
   }, [won]);
 
   useEffect(() => {
+    const theme = getThemeFromLocalStorage();
+    applyMode(theme);
+
     const searchParams = new URLSearchParams(window.location.search);
     const value = searchParams.get("animal");
     const animal = (
@@ -47,7 +52,9 @@ export const App = () => {
   }, []);
 
   const toggleModeHandler = () => {
-    applyMode(isDarkModeEnabled() ? Mode.Light : Mode.Dark);
+    const theme = isDarkModeEnabled() ? Mode.Light : Mode.Dark;
+    setLocalStorage("theme", theme);
+    applyMode(theme);
   };
 
   return (
