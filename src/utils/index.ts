@@ -1,5 +1,6 @@
 import { animals } from "src/animals.js";
 import { DARK_MODE_CLASS_NAME } from "src/constants.js";
+import fuzzy from "fuzzy";
 
 const animalsInEnglish = Object.keys(animals);
 export const possibleGuesses = Object.values(animals).reduce((acc, val) => {
@@ -19,3 +20,11 @@ export const capitalize = (str: string): string => {
 
 export const isDarkModeEnabled = () =>
   document.body.classList.contains(DARK_MODE_CLASS_NAME);
+
+export const getAnimalFromString = (searchTerm?: string | null) => {
+  if (!searchTerm) {
+    return null;
+  }
+
+  return fuzzy.filter(searchTerm, animalsInEnglish)[0].original;
+};

@@ -11,7 +11,11 @@ import { GuessArea } from "src/GuessArea/index.js";
 import { Animal } from "src/Animal/index.js";
 import { ActionArea } from "src/ActionArea/index.js";
 import { useEffect, useRef } from "react";
-import { getRandomAnimal, isDarkModeEnabled } from "src/utils/index.js";
+import {
+  getAnimalFromString,
+  getRandomAnimal,
+  isDarkModeEnabled,
+} from "src/utils/index.js";
 import { useGlobalContext } from "src/state/index.js";
 import { Moon } from "src/Icons/index.js";
 import { applyMode, Mode } from "@cloudscape-design/global-styles";
@@ -34,8 +38,9 @@ export const App = () => {
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
+    const value = searchParams.get("animal");
     const animal = (
-      searchParams.get("animal") || getRandomAnimal()
+      getAnimalFromString(value) || getRandomAnimal()
     ).toLocaleLowerCase();
 
     dispatch({ type: "SET_ANIMAL", payload: animal });
