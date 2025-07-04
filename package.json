@@ -14,6 +14,7 @@
   "homepage": "https://github.com/pranshuteotia/guess-the-animal#readme",
   "scripts": {
     "build": "vite build",
+    "clean": "rm -rf ./node_modules ./dist",
     "deploy": "gh-pages -d dist",
     "predeploy": "npm run build",
     "preview": "vite preview",

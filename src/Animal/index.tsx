@@ -14,8 +14,13 @@ export const Animal = () => {
   const {
     state: { animal, status },
   } = useGlobalContext();
-  const { imageWrapper, imageBorderRadius, imagePlaceholder } =
-    useAnimalStyles();
+  const {
+    imageWrapper,
+    animalImage,
+    imagePlaceholder,
+    animalWrapper,
+    spinner,
+  } = useAnimalStyles();
   const { loading } = useImage(`${animal}.webp`);
 
   if (animal.length === 0 || !animals[animal]) {
@@ -27,19 +32,18 @@ export const Animal = () => {
   const answer = answers.map((text) => capitalize(text)).join(", ");
 
   return (
-    <SpaceBetween size="s" direction="vertical">
+    <div className={animalWrapper}>
       <div className={imageWrapper}>
-        {!loading && (
-          <img
-            src={`./images/${animal}.webp`}
-            alt={`Cartoonish ${animal}`}
-            width={300}
-            className={imageBorderRadius}
-          />
-        )}
+        <img
+          src={`./images/${animal}.webp`}
+          alt={`Cartoonish ${animal}`}
+          className={animalImage}
+        />
         {loading && (
           <div className={imagePlaceholder}>
-            <Spinner size="big" />
+            <div className={spinner}>
+              <Spinner size="big" />
+            </div>
           </div>
         )}
       </div>
@@ -47,6 +51,6 @@ export const Animal = () => {
         <Header variant="h2">{capitalize(animal)}</Header>
         {status === "REVEAL" && <Box>{`(${answer})`}</Box>}
       </SpaceBetween>
-    </SpaceBetween>
+    </div>
   );
 };
