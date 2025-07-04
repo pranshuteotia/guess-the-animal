@@ -9,7 +9,7 @@ import {
 import type { BaseChangeDetail } from "node_modules/@cloudscape-design/components/input/interfaces.js";
 import { useState } from "react";
 import { useGlobalContext } from "src/state/index.js";
-import { possibleGuesses } from "src/utils/index.js";
+import { getAnimalsThatMatchSearchTerm } from "src/utils/index.js";
 
 export const GuessArea = () => {
   const [options, setOptions] = useState<AutosuggestProps.Options>([]);
@@ -25,9 +25,7 @@ export const GuessArea = () => {
       return;
     }
 
-    const matchedAnimals = possibleGuesses.filter(
-      (animal) => searchTerm.length > 0 && animal.includes(searchTerm)
-    );
+    const matchedAnimals = getAnimalsThatMatchSearchTerm(searchTerm);
     setOptions(matchedAnimals.map((animal) => ({ value: animal })));
   };
 

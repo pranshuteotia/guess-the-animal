@@ -5,12 +5,13 @@ import type { LocalStorageKey, Nullable } from "src/types.js";
 import { Mode } from "@cloudscape-design/global-styles";
 
 const animalsInEnglish = Object.keys(animals);
-export const possibleGuesses: string[] = Object.values(animals).reduce<
-  string[]
->((acc, [val]) => {
-  acc = acc.concat(val);
-  return acc;
-}, []);
+const possibleGuesses: string[] = Object.values(animals).reduce<string[]>(
+  (acc, [val]) => {
+    acc = acc.concat(val);
+    return acc;
+  },
+  []
+);
 
 export const getRandomAnimal = (): string => {
   const randomIndex = Math.floor(Math.random() * animalsInEnglish.length);
@@ -33,6 +34,16 @@ export const getAnimalFromString = (
   }
 
   return fuzzy.filter(searchTerm, animalsInEnglish)[0].original;
+};
+
+export const getAnimalsThatMatchSearchTerm = (searchTerm: string): string[] => {
+  if (searchTerm.length === 0) {
+    return [];
+  }
+
+  const matchedAnimals = fuzzy.filter(searchTerm, possibleGuesses);
+
+  return matchedAnimals.map((matchedAnimal) => matchedAnimal.original);
 };
 
 export const setLocalStorage = (key: LocalStorageKey, value: any) => {
