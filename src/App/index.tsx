@@ -11,8 +11,10 @@ import { GuessArea } from "src/GuessArea/index.js";
 import { Animal } from "src/Animal/index.js";
 import { ActionArea } from "src/ActionArea/index.js";
 import { useEffect, useRef } from "react";
-import { getRandomAnimal } from "src/utils/index.js";
+import { getRandomAnimal, isDarkModeEnabled } from "src/utils/index.js";
 import { useGlobalContext } from "src/state/index.js";
+import { Moon } from "src/Icons/index.js";
+import { applyMode, Mode } from "@cloudscape-design/global-styles";
 
 export const App = () => {
   const {
@@ -39,6 +41,10 @@ export const App = () => {
     dispatch({ type: "SET_ANIMAL", payload: animal });
   }, []);
 
+  const toggleModeHandler = () => {
+    applyMode(isDarkModeEnabled() ? Mode.Light : Mode.Dark);
+  };
+
   return (
     <ContentLayout
       maxContentWidth={350}
@@ -46,6 +52,13 @@ export const App = () => {
       header={
         <div ref={headerRef}>
           <Header
+            actions={
+              <Button
+                variant="icon"
+                iconSvg={<Moon />}
+                onClick={toggleModeHandler}
+              />
+            }
             variant="h1"
             info={
               <Popover

@@ -4,7 +4,6 @@ import {
   SpaceBetween,
   Spinner,
 } from "@cloudscape-design/components";
-import { useEffect, useState } from "react";
 import { useAnimalStyles } from "src/Animal/styles.js";
 import { animals } from "src/animals.js";
 import { useImage } from "src/hooks/use-image.js";
@@ -17,10 +16,6 @@ export const Animal = () => {
   } = useGlobalContext();
   const { imageWrapper, imagePlaceholder } = useAnimalStyles();
   const { loading } = useImage(`${animal}.webp`);
-
-  useEffect(() => {
-    console.log(loading);
-  }, [loading]);
 
   if (animal.length === 0 || !animals[animal]) {
     return null;
