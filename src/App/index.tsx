@@ -78,6 +78,7 @@ export const App = () => {
               <Popover
                 position="bottom"
                 triggerType="custom"
+                header="How to play"
                 content={
                   <Box>Guess the hindi name of the animal displayed below.</Box>
                 }

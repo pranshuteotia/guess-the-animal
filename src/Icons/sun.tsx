@@ -1,10 +1,6 @@
-import { useSelector } from "src/state/index.js";
-
 interface SunIconProps {}
 
 export const Sun = (props: SunIconProps) => {
-  const theme = useSelector((state) => state.theme);
-
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -22,7 +18,7 @@ export const Sun = (props: SunIconProps) => {
         x2="12"
         y2="3"
         stroke="currentColor"
-        stroke-width="2"
+        strokeWidth="2"
       />
       <line
         x1="12"
@@ -30,7 +26,7 @@ export const Sun = (props: SunIconProps) => {
         x2="12"
         y2="23"
         stroke="currentColor"
-        stroke-width="2"
+        strokeWidth="2"
       />
       <line
         x1="4.22"
@@ -38,7 +34,7 @@ export const Sun = (props: SunIconProps) => {
         x2="5.64"
         y2="5.64"
         stroke="currentColor"
-        stroke-width="2"
+        strokeWidth="2"
       />
       <line
         x1="18.36"
@@ -46,7 +42,7 @@ export const Sun = (props: SunIconProps) => {
         x2="19.78"
         y2="19.78"
         stroke="currentColor"
-        stroke-width="2"
+        strokeWidth="2"
       />
       <line
         x1="1"
@@ -54,7 +50,7 @@ export const Sun = (props: SunIconProps) => {
         x2="3"
         y2="12"
         stroke="currentColor"
-        stroke-width="2"
+        strokeWidth="2"
       />
       <line
         x1="21"
@@ -62,7 +58,7 @@ export const Sun = (props: SunIconProps) => {
         x2="23"
         y2="12"
         stroke="currentColor"
-        stroke-width="2"
+        strokeWidth="2"
       />
       <line
         x1="4.22"
@@ -70,7 +66,7 @@ export const Sun = (props: SunIconProps) => {
         x2="5.64"
         y2="18.36"
         stroke="currentColor"
-        stroke-width="2"
+        strokeWidth="2"
       />
       <line
         x1="18.36"
@@ -78,7 +74,7 @@ export const Sun = (props: SunIconProps) => {
         x2="19.78"
         y2="4.22"
         stroke="currentColor"
-        stroke-width="2"
+        strokeWidth="2"
       />
     </svg>
   );

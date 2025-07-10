@@ -1,10 +1,6 @@
-import { useSelector } from "src/state/index.js";
-
 interface MoonIconProps {}
 
 export const Moon = (props: MoonIconProps) => {
-  const theme = useSelector((state) => state.theme);
-
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
