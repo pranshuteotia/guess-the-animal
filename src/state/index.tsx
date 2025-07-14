@@ -84,3 +84,8 @@ export function useSelector<Selected>(
 
   return selectedState;
 }
+
+export const useDispatch = () => {
+  const context = useGlobalContext();
+  return context.dispatch;
+};
