@@ -30,7 +30,6 @@ export const GlobalContextProvider = ({
   children,
 }: GlobalContextProviderProps) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const getState = () => state;
   const subscribers = useRef<Set<() => void>>(new Set());
 
   useEffect(() => {
@@ -62,10 +61,7 @@ export const useGlobalContext = () => {
 export function useSelector<Selected>(
   selector: (state: GlobalState) => Selected
 ): Selected {
-  const context = useContext(GlobalContext);
-  if (!context) {
-    throw new Error("useSelector must be used within a GlobalContextProvider");
-  }
+  const context = useGlobalContext();
 
   const { state, subscribe } = context;
 

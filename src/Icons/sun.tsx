@@ -1,6 +1,4 @@
-interface SunIconProps {}
-
-export const Sun = (props: SunIconProps) => {
+export const Sun = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -9,7 +7,6 @@ export const Sun = (props: SunIconProps) => {
       height="24"
       fill="white"
       style={{ fill: "white" }}
-      {...props}
     >
       <circle cx="12" cy="12" r="5" />
       <line

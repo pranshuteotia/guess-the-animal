@@ -46,17 +46,17 @@ export const getAnimalsThatMatchSearchTerm = (searchTerm: string): string[] => {
   return matchedAnimals.map((matchedAnimal) => matchedAnimal.original);
 };
 
-export const setLocalStorage = (key: LocalStorageKey, value: any) => {
+export const setLocalStorage = (key: LocalStorageKey, value: unknown) => {
   try {
     const serializedValue = JSON.stringify(value);
 
     localStorage.setItem(key, serializedValue);
   } catch (e) {
-    // Do nothing.
+    console.error(e);
   }
 };
 
-export const getLocalStorage = (key: LocalStorageKey) => {
+export const getLocalStorage = (key: LocalStorageKey): unknown => {
   try {
     const serializedValue = localStorage.getItem(key);
 
@@ -65,7 +65,7 @@ export const getLocalStorage = (key: LocalStorageKey) => {
     }
     return JSON.parse(serializedValue);
   } catch (e) {
-    // Do nothing.
+    console.error(e);
   }
 };
 

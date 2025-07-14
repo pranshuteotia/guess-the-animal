@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
+import type { Nullable } from "src/types.js";
 
 export const useImage = (fileName: string) => {
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<Nullable<unknown>>(null);
   const [image, setImage] = useState(null);
 
   useEffect(() => {
@@ -13,7 +14,7 @@ export const useImage = (fileName: string) => {
           /* @vite-ignore */ `./images/${fileName}`
         );
         setImage(response.default);
-      } catch (err: any) {
+      } catch (err) {
         setError(err);
       } finally {
         setLoading(false);
