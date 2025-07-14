@@ -21,6 +21,7 @@ import {
 import { useGlobalContext } from "src/state/index.js";
 import { Moon, Sun } from "src/Icons/index.js";
 import { applyMode, Mode } from "@cloudscape-design/global-styles";
+import { setAnimal, setStatus, setTheme } from "src/state/reducer.js";
 
 export const App = () => {
   const {
@@ -33,7 +34,7 @@ export const App = () => {
     if (won) {
       headerRef.current?.scrollIntoView(true);
       setTimeout(() => {
-        dispatch({ type: "SET_STATUS", payload: "CELEBRATE" });
+        dispatch(setStatus("CELEBRATE"));
       }, 200);
     }
   }, [won]);
@@ -41,7 +42,7 @@ export const App = () => {
   useEffect(() => {
     const theme = getThemeFromLocalStorage();
     applyMode(theme);
-    dispatch({ type: "SET_THEME", payload: theme });
+    dispatch(setTheme(theme));
 
     const searchParams = new URLSearchParams(window.location.search);
     const value = searchParams.get("animal");
@@ -49,14 +50,14 @@ export const App = () => {
       getAnimalFromString(value) || getRandomAnimal()
     ).toLocaleLowerCase();
 
-    dispatch({ type: "SET_ANIMAL", payload: animal });
+    dispatch(setAnimal(animal));
   }, []);
 
   const toggleModeHandler = () => {
     const theme = isDarkModeEnabled() ? Mode.Light : Mode.Dark;
     setLocalStorage("theme", theme);
     applyMode(theme);
-    dispatch({ type: "SET_THEME", payload: theme });
+    dispatch(setTheme(theme));
   };
 
   return (

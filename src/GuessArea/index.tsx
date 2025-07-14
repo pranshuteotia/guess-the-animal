@@ -9,6 +9,7 @@ import {
 import type { BaseChangeDetail } from "node_modules/@cloudscape-design/components/input/interfaces.js";
 import { useState } from "react";
 import { useGlobalContext } from "src/state/index.js";
+import { setGameMode, setGuess } from "src/state/reducer.js";
 import { getAnimalsThatMatchSearchTerm } from "src/utils/index.js";
 
 export const GuessArea = () => {
@@ -34,14 +35,14 @@ export const GuessArea = () => {
   ) => {
     const updatedSearchTerm = event.detail.value.toLocaleLowerCase();
     loadOptions(updatedSearchTerm);
-    dispatch({ type: "SET_GUESS", payload: updatedSearchTerm });
+    dispatch(setGuess(updatedSearchTerm));
   };
 
   const hardModeCheckboxHandler = ({
     detail,
   }: NonCancelableCustomEvent<CheckboxProps.ChangeDetail>) => {
     setHardModeEnabled(detail.checked);
-    dispatch({ type: "SET_MODE", payload: detail.checked ? "HARD" : "NORMAL" });
+    dispatch(setGameMode(detail.checked ? "HARD" : "NORMAL"));
   };
 
   return (

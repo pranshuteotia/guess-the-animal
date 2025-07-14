@@ -4,6 +4,12 @@ import { ConfettiExplosion } from "react-confetti-explosion";
 import { useActionAreaStyles } from "src/ActionArea/styles.js";
 import { animals } from "src/animals.js";
 import { useGlobalContext } from "src/state/index.js";
+import {
+  setAnimal,
+  setGuess,
+  setStatus,
+  setWonStatus,
+} from "src/state/reducer.js";
 import { getRandomAnimal } from "src/utils/index.js";
 
 export const ActionArea = () => {
@@ -22,8 +28,8 @@ export const ActionArea = () => {
   const submitButtonHandler = () => {
     const [answers, secret] = animals[animal];
     if (answers.concat(secret).includes(currentGuess)) {
-      dispatch({ type: "SET_WON", payload: true });
-      dispatch({ type: "SET_GUESS", payload: "" });
+      dispatch(setWonStatus(true));
+      dispatch(setGuess(""));
     } else {
       // Do nothing for now...
     }
@@ -31,19 +37,19 @@ export const ActionArea = () => {
 
   const nextButtonHandler = () => {
     const newAnimal = getRandomAnimal();
-    dispatch({ type: "SET_ANIMAL", payload: newAnimal });
-    dispatch({ type: "SET_STATUS", payload: "PLAY" });
+    dispatch(setAnimal(newAnimal));
+    dispatch(setStatus("PLAY"));
   };
 
   const celebrationEndHandler = () => {
-    dispatch({ type: "SET_WON", payload: false });
-    dispatch({ type: "SET_STATUS", payload: "PLAY" });
-    dispatch({ type: "SET_ANIMAL", payload: getRandomAnimal() });
+    dispatch(setWonStatus(false));
+    dispatch(setStatus("PLAY"));
+    dispatch(setAnimal(getRandomAnimal()));
     setCelebrate(false);
   };
 
   const revealButtonHandler = () => {
-    dispatch({ type: "SET_STATUS", payload: "REVEAL" });
+    dispatch(setStatus("REVEAL"));
   };
 
   return (

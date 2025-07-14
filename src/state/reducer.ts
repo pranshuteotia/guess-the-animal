@@ -1,4 +1,10 @@
-import type { GlobalState, GlobalStateActions } from "src/types.js";
+import type { Mode } from "@cloudscape-design/global-styles";
+import type {
+  GameMode,
+  GlobalState,
+  GlobalStateActions,
+  Status,
+} from "src/types.js";
 
 export const reducer = (
   state: GlobalState,
@@ -21,3 +27,33 @@ export const reducer = (
       return state;
   }
 };
+
+export const setAnimal = (payload: string): GlobalStateActions => ({
+  type: "SET_ANIMAL",
+  payload,
+});
+
+export const setGuess = (payload: string): GlobalStateActions => ({
+  type: "SET_GUESS",
+  payload,
+});
+
+export const setGameMode = (payload: GameMode): GlobalStateActions => ({
+  type: "SET_MODE",
+  payload,
+});
+
+export const setWonStatus = (payload: boolean): GlobalStateActions => ({
+  type: "SET_WON",
+  payload,
+});
+
+export const setStatus = (payload: Status): GlobalStateActions => ({
+  type: "SET_STATUS",
+  payload,
+});
+
+export const setTheme = (payload: Mode): GlobalStateActions => ({
+  type: "SET_THEME",
+  payload,
+});
