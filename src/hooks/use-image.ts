@@ -1,19 +1,41 @@
 import { useEffect, useState } from "react";
-import type { Nullable } from "src/types.js";
+import { INITIAL_IMAGE_METADATA } from "src/constants.js";
+import type { ImageMetadata, Nullable } from "src/types.js";
 
-export const useImage = (fileName: string) => {
+interface UseImageProps {
+  currentAnimal: string;
+  nextAnimal: string;
+}
+
+export const useImage = ({ currentAnimal, nextAnimal }: UseImageProps) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Nullable<unknown>>(null);
-  const [image, setImage] = useState(null);
+  const [animalImages, setAnimalImages] = useState<{
+    current: ImageMetadata;
+    next: ImageMetadata;
+  }>({
+    current: INITIAL_IMAGE_METADATA,
+    next: INITIAL_IMAGE_METADATA,
+  });
 
   useEffect(() => {
     const fetchImage = async () => {
       setLoading(true);
       try {
-        const response = await import(
-          /* @vite-ignore */ `./images/${fileName}`
+        const currentAnimalImageMetadata = await import(
+          `../assets/images/${currentAnimal}.png?w=400&format=webp&as=meta`
         );
-        setImage(response.default);
+        const nextAnimalImageMetadata = await import(
+          `../assets/images/${nextAnimal}.png?w=400&format=webp&as=meta`
+        );
+
+        setAnimalImages({
+          current: {
+            ...currentAnimalImageMetadata.default,
+            name: currentAnimal,
+          },
+          next: { ...nextAnimalImageMetadata.default, name: nextAnimal },
+        });
       } catch (err) {
         setError(err);
       } finally {
@@ -22,11 +44,11 @@ export const useImage = (fileName: string) => {
     };
 
     fetchImage();
-  }, [fileName]);
+  }, [currentAnimal, nextAnimal]);
 
   return {
     loading,
     error,
-    image,
+    animalImages,
   };
 };

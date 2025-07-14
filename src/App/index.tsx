@@ -49,7 +49,7 @@ export const App = () => {
       getAnimalFromString(value) || getRandomAnimal()
     ).toLocaleLowerCase();
 
-    dispatch(setAnimal(animal));
+    dispatch(setAnimal({ current: animal, next: getRandomAnimal() }));
   }, []);
 
   const toggleModeHandler = () => {

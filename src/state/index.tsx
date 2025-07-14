@@ -11,7 +11,7 @@ import { reducer } from "src/state/reducer.js";
 import { Mode } from "@cloudscape-design/global-styles";
 
 const initialState: GlobalState = {
-  animal: "",
+  animal: { current: "", next: "" },
   currentGuess: "",
   mode: "NORMAL",
   won: false,

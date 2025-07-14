@@ -1,14 +1,16 @@
+import path from "path";
+
 import { defineConfig } from "vitest/config";
 import react from "@vitejs/plugin-react";
 import mkcert from "vite-plugin-mkcert";
-import path from "path";
 import dynamicImport from "vite-plugin-dynamic-import";
+import { imagetools } from "vite-imagetools";
 
 const resolvePath = (relPath: string) => path.join(__dirname, relPath);
 
 export default defineConfig({
   base: "./",
-  plugins: [react(), mkcert(), dynamicImport()],
+  plugins: [react(), mkcert(), dynamicImport(), imagetools()],
   resolve: {
     alias: {
       src: resolvePath("src"),

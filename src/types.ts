@@ -1,7 +1,7 @@
 import type { Mode } from "@cloudscape-design/global-styles";
 
 export interface GlobalState {
-  animal: string;
+  animal: AnimalObj;
   currentGuess: string;
   mode: GameMode;
   won: boolean;
@@ -11,9 +11,10 @@ export interface GlobalState {
 
 export type GameMode = "NORMAL" | "HARD";
 export type Status = "PLAY" | "CELEBRATE" | "REVEAL";
+export type AnimalObj = { current: string; next: string };
 
 export type GlobalStateActions =
-  | { type: "SET_ANIMAL"; payload: string }
+  | { type: "SET_ANIMAL"; payload: AnimalObj }
   | { type: "SET_GUESS"; payload: string }
   | { type: "SET_MODE"; payload: GameMode }
   | { type: "SET_WON"; payload: boolean }
@@ -29,3 +30,11 @@ export interface GlobalContextType {
 export type LocalStorageKey = "theme";
 
 export type Nullable<T> = T | null;
+
+export interface ImageMetadata {
+  name: string;
+  format: string;
+  width: number;
+  height: number;
+  src: string;
+}

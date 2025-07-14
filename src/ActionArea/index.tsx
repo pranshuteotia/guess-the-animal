@@ -31,7 +31,7 @@ export const ActionArea = () => {
   }, [status]);
 
   const submitButtonHandler = () => {
-    const [answers, secret] = animals[animal];
+    const [answers, secret] = animals[animal.current];
     if (answers.concat(secret).includes(currentGuess)) {
       dispatch(setWonStatus(true));
       dispatch(setGuess(""));
@@ -42,14 +42,14 @@ export const ActionArea = () => {
 
   const nextButtonHandler = () => {
     const newAnimal = getRandomAnimal();
-    dispatch(setAnimal(newAnimal));
+    dispatch(setAnimal({ current: animal.next, next: newAnimal }));
     dispatch(setStatus("PLAY"));
   };
 
   const celebrationEndHandler = () => {
     dispatch(setWonStatus(false));
     dispatch(setStatus("PLAY"));
-    dispatch(setAnimal(getRandomAnimal()));
+    dispatch(setAnimal({ current: animal.next, next: getRandomAnimal() }));
     setCelebrate(false);
   };
 
@@ -88,6 +88,7 @@ export const ActionArea = () => {
             force={0.6}
             portal={false}
             onComplete={celebrationEndHandler}
+            zIndex={999}
           />
         </div>
       )}
