@@ -7,13 +7,12 @@ import {
 import { useAnimalStyles } from "src/Animal/styles.js";
 import { animals } from "src/animals.js";
 import { useImage } from "src/hooks/use-image.js";
-import { useGlobalContext } from "src/state/index.js";
+import { useAnimal, useStatus } from "src/state/index.js";
 import { capitalize } from "src/utils/index.js";
 
 export const Animal = () => {
-  const {
-    state: { animal, status },
-  } = useGlobalContext();
+  const animal = useAnimal();
+  const status = useStatus();
   const {
     imageWrapper,
     animalImage,

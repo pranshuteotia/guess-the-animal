@@ -3,6 +3,7 @@ import globals from "globals";
 import tseslint from "typescript-eslint";
 import pluginReact from "eslint-plugin-react";
 import { defineConfig } from "eslint/config";
+import importPlugin from "eslint-plugin-import";
 
 export default defineConfig([
   {
@@ -27,4 +28,23 @@ export default defineConfig([
     },
   },
   tseslint.configs.recommended,
+  {
+    ...importPlugin.flatConfigs.recommended,
+    rules: {
+      ...importPlugin.flatConfigs.recommended.rules,
+      "import/no-unresolved": "off",
+      "import/order": [
+        "error",
+        {
+          groups: [
+            "builtin",
+            "external",
+            "internal",
+            ["parent", "sibling", "index"],
+          ],
+          "newlines-between": "always",
+        },
+      ],
+    },
+  },
 ]);

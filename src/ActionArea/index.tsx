@@ -3,7 +3,12 @@ import { useEffect, useState } from "react";
 import { ConfettiExplosion } from "react-confetti-explosion";
 import { useActionAreaStyles } from "src/ActionArea/styles.js";
 import { animals } from "src/animals.js";
-import { useDispatch, useGlobalContext } from "src/state/index.js";
+import {
+  useAnimal,
+  useCurrentGuess,
+  useDispatch,
+  useStatus,
+} from "src/state/index.js";
 import {
   setAnimal,
   setGuess,
@@ -13,9 +18,9 @@ import {
 import { getRandomAnimal } from "src/utils/index.js";
 
 export const ActionArea = () => {
-  const {
-    state: { animal, currentGuess, status },
-  } = useGlobalContext();
+  const animal = useAnimal();
+  const currentGuess = useCurrentGuess();
+  const status = useStatus();
   const dispatch = useDispatch();
 
   const [celebrate, setCelebrate] = useState(false);

@@ -18,15 +18,14 @@ import {
   isDarkModeEnabled,
   setLocalStorage,
 } from "src/utils/index.js";
-import { useDispatch, useGlobalContext } from "src/state/index.js";
+import { useDispatch, useTheme, useWon } from "src/state/index.js";
 import { Moon, Sun } from "src/Icons/index.js";
 import { applyMode, Mode } from "@cloudscape-design/global-styles";
 import { setAnimal, setStatus, setTheme } from "src/state/reducer.js";
 
 export const App = () => {
-  const {
-    state: { won, theme },
-  } = useGlobalContext();
+  const won = useWon();
+  const theme = useTheme();
   const dispatch = useDispatch();
   const headerRef = useRef<HTMLDivElement>(null);
 

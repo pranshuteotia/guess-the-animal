@@ -1,4 +1,4 @@
-import type { GlobalState } from "src/types.js";
+import type { GlobalState, GlobalContextType } from "src/types.js";
 import {
   createContext,
   useContext,
@@ -8,7 +8,6 @@ import {
   useState,
 } from "react";
 import { reducer } from "src/state/reducer.js";
-import type { GlobalContextType } from "src/types.js";
 import { Mode } from "@cloudscape-design/global-styles";
 
 const initialState: GlobalState = {
@@ -89,3 +88,10 @@ export const useDispatch = () => {
   const context = useGlobalContext();
   return context.dispatch;
 };
+
+export const useAnimal = () => useSelector((state) => state.animal);
+export const useTheme = () => useSelector((state) => state.theme);
+export const useCurrentGuess = () => useSelector((state) => state.currentGuess);
+export const useCurrentMode = () => useSelector((state) => state.mode);
+export const useStatus = () => useSelector((state) => state.status);
+export const useWon = () => useSelector((state) => state.won);

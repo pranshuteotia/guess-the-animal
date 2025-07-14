@@ -8,16 +8,14 @@ import {
 } from "@cloudscape-design/components";
 import type { BaseChangeDetail } from "node_modules/@cloudscape-design/components/input/interfaces.js";
 import { useState } from "react";
-import { useDispatch, useGlobalContext } from "src/state/index.js";
+import { useCurrentGuess, useDispatch } from "src/state/index.js";
 import { setGameMode, setGuess } from "src/state/reducer.js";
 import { getAnimalsThatMatchSearchTerm } from "src/utils/index.js";
 
 export const GuessArea = () => {
   const [options, setOptions] = useState<AutosuggestProps.Options>([]);
   const [hardModeEnabled, setHardModeEnabled] = useState(false);
-  const {
-    state: { currentGuess },
-  } = useGlobalContext();
+  const currentGuess = useCurrentGuess();
   const dispatch = useDispatch();
 
   const loadOptions = (searchTerm: string) => {
