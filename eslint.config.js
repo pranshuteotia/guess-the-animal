@@ -11,7 +11,7 @@ export default defineConfig([
     plugins: { js },
     extends: ["js/recommended"],
     rules: {
-      "no-console": "warn",
+      "no-console": ["warn", { allow: ["error", "info", "warn"] }],
     },
   },
   {

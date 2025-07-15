@@ -54,7 +54,6 @@ export function* createAnimalNameGenerator(
 ): Generator<string, never, void> {
   const shuffled = shuffleArray(names);
   let index = 0;
-  console.log("DEBUG", shuffled);
 
   while (true) {
     yield shuffled[index];
