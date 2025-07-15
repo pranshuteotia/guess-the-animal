@@ -21,7 +21,12 @@ import {
 import { useDispatch, useTheme, useWon } from "src/state/index.js";
 import { Moon, Sun } from "src/Icons/index.js";
 import { applyMode, Mode } from "@cloudscape-design/global-styles";
-import { setAnimal, setStatus, setTheme } from "src/state/reducer.js";
+import {
+  setAnimal,
+  setNextAnimal,
+  setStatus,
+  setTheme,
+} from "src/state/reducer.js";
 
 export const App = () => {
   const won = useWon();
@@ -49,7 +54,8 @@ export const App = () => {
       getAnimalFromString(value) || getRandomAnimal()
     ).toLocaleLowerCase();
 
-    dispatch(setAnimal({ current: animal, next: getRandomAnimal() }));
+    dispatch(setAnimal(animal));
+    dispatch(setNextAnimal(getRandomAnimal()));
   }, []);
 
   const toggleModeHandler = () => {

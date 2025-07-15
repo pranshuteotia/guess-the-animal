@@ -1,6 +1,5 @@
 import type { Mode } from "@cloudscape-design/global-styles";
 import type {
-  AnimalObj,
   GameMode,
   GlobalState,
   GlobalStateActions,
@@ -13,7 +12,9 @@ export const reducer = (
 ): GlobalState => {
   switch (action.type) {
     case "SET_ANIMAL":
-      return { ...state, animal: { ...action.payload } };
+      return { ...state, animal: action.payload };
+    case "SET_NEXT_ANIMAL":
+      return { ...state, nextAnimal: action.payload };
     case "SET_GUESS":
       return { ...state, currentGuess: action.payload };
     case "SET_MODE":
@@ -29,8 +30,13 @@ export const reducer = (
   }
 };
 
-export const setAnimal = (payload: AnimalObj): GlobalStateActions => ({
+export const setAnimal = (payload: string): GlobalStateActions => ({
   type: "SET_ANIMAL",
+  payload,
+});
+
+export const setNextAnimal = (payload: string): GlobalStateActions => ({
+  type: "SET_NEXT_ANIMAL",
   payload,
 });
 

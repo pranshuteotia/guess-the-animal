@@ -13,7 +13,7 @@
   },
   "homepage": "https://github.com/pranshuteotia/guess-the-animal#readme",
   "scripts": {
-    "build": "vite build",
+    "build": "tsc && vite build",
     "check:lint": "eslint ./src",
     "clean": "rm -rf ./node_modules ./dist",
     "deploy": "npm run check:lint && npm run build && gh-pages -d dist",

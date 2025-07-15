@@ -7,11 +7,13 @@ import {
   useAnimal,
   useCurrentGuess,
   useDispatch,
+  useNextAnimal,
   useStatus,
 } from "src/state/index.js";
 import {
   setAnimal,
   setGuess,
+  setNextAnimal,
   setStatus,
   setWonStatus,
 } from "src/state/reducer.js";
@@ -19,6 +21,7 @@ import { getRandomAnimal } from "src/utils/index.js";
 
 export const ActionArea = () => {
   const animal = useAnimal();
+  const nextAnimal = useNextAnimal();
   const currentGuess = useCurrentGuess();
   const status = useStatus();
   const dispatch = useDispatch();
@@ -31,7 +34,7 @@ export const ActionArea = () => {
   }, [status]);
 
   const submitButtonHandler = () => {
-    const [answers, secret] = animals[animal.current];
+    const [answers, secret] = animals[animal];
     if (answers.concat(secret).includes(currentGuess)) {
       dispatch(setWonStatus(true));
       dispatch(setGuess(""));
@@ -42,14 +45,16 @@ export const ActionArea = () => {
 
   const nextButtonHandler = () => {
     const newAnimal = getRandomAnimal();
-    dispatch(setAnimal({ current: animal.next, next: newAnimal }));
+    dispatch(setAnimal(nextAnimal));
+    dispatch(setNextAnimal(newAnimal));
     dispatch(setStatus("PLAY"));
   };
 
   const celebrationEndHandler = () => {
     dispatch(setWonStatus(false));
     dispatch(setStatus("PLAY"));
-    dispatch(setAnimal({ current: animal.next, next: getRandomAnimal() }));
+    dispatch(setAnimal(nextAnimal));
+    dispatch(setNextAnimal(getRandomAnimal()));
     setCelebrate(false);
   };
 
