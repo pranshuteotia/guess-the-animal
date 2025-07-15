@@ -13,7 +13,7 @@ import { ActionArea } from "src/ActionArea/index.js";
 import { useEffect, useRef } from "react";
 import {
   getAnimalFromString,
-  getRandomAnimal,
+  getAnimalNameGenerator,
   getThemeFromLocalStorage,
   isDarkModeEnabled,
   setLocalStorage,
@@ -33,6 +33,7 @@ export const App = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const headerRef = useRef<HTMLDivElement>(null);
+  const animalNameGenerator = getAnimalNameGenerator();
 
   useEffect(() => {
     if (won) {
@@ -51,11 +52,11 @@ export const App = () => {
     const searchParams = new URLSearchParams(window.location.search);
     const value = searchParams.get("animal");
     const animal = (
-      getAnimalFromString(value) || getRandomAnimal()
+      getAnimalFromString(value) || animalNameGenerator.next().value
     ).toLocaleLowerCase();
 
     dispatch(setAnimal(animal));
-    dispatch(setNextAnimal(getRandomAnimal()));
+    dispatch(setNextAnimal(animalNameGenerator.next().value));
   }, []);
 
   const toggleModeHandler = () => {

@@ -17,7 +17,7 @@ import {
   setStatus,
   setWonStatus,
 } from "src/state/reducer.js";
-import { getRandomAnimal } from "src/utils/index.js";
+import { getAnimalNameGenerator } from "src/utils/index.js";
 
 export const ActionArea = () => {
   const animal = useAnimal();
@@ -25,6 +25,7 @@ export const ActionArea = () => {
   const currentGuess = useCurrentGuess();
   const status = useStatus();
   const dispatch = useDispatch();
+  const animalNameGenerator = getAnimalNameGenerator();
 
   const [celebrate, setCelebrate] = useState(false);
   const { confettiContainer } = useActionAreaStyles();
@@ -43,8 +44,8 @@ export const ActionArea = () => {
     }
   };
 
-  const nextButtonHandler = () => {
-    const newAnimal = getRandomAnimal();
+  const skipButtonHandler = () => {
+    const newAnimal = animalNameGenerator.next().value;
     dispatch(setAnimal(nextAnimal));
     dispatch(setNextAnimal(newAnimal));
     dispatch(setStatus("PLAY"));
@@ -54,7 +55,7 @@ export const ActionArea = () => {
     dispatch(setWonStatus(false));
     dispatch(setStatus("PLAY"));
     dispatch(setAnimal(nextAnimal));
-    dispatch(setNextAnimal(getRandomAnimal()));
+    dispatch(setNextAnimal(animalNameGenerator.next().value));
     setCelebrate(false);
   };
 
@@ -66,7 +67,7 @@ export const ActionArea = () => {
     <>
       <SpaceBetween size="m" direction="vertical">
         <SpaceBetween size="s" direction="horizontal">
-          <Button disabled={celebrate} onClick={nextButtonHandler}>
+          <Button disabled={celebrate} onClick={skipButtonHandler}>
             Skip
           </Button>
           <Button
